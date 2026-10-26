@@ -14,9 +14,9 @@
 3. **Group Policy:** on DC01, created a GPO called `Intune-AutoEnrol`, linked to the **Workstations** OU, with *Enable automatic MDM enrollment 
 		     using default Microsoft Entra credentials* set to **Enabled** and credential type **User Credential**.
 
-1. [Licenses](screenshots/01-licences-assigned-e3.png)
-2. [MDM user scope set to All](screenshots/02-mdm-user-scope-all.png)
-3. [Auto-enrol GPO settings](screenshots/03-gpo-intune-autoenrol-settings.png)
+![Licenses](screenshots/01-licences-assigned-e3.png)
+![MDM user scope set to All](screenshots/02-mdm-user-scope-all.png)
+![Auto-enrol GPO settings](screenshots/03-gpo-intune-autoenrol-settings.png)
 
 ## Applying it on PC-1
 
@@ -35,8 +35,8 @@ Running `dsregcmd /status` and looking at **Tenant Details** confirmed it, with 
 Once the URLs appeared, PC-1 enrolled on its own and I didn't need to rerun the task. After a few minutes, I checked Intune to confirm and the device appeared wtih
 **Managed by: Intune** and a hybrid joined join type]
 
-1. [MDM URLs populated](screenshots/04-dsregcmd-mdm-urls-populated.png)
-2. [PC-1 managed in Intune](screenshots/05-intune-device-managed.png)
+![MDM URLs populated](screenshots/04-dsregcmd-mdm-urls-populated.png)
+![PC-1 managed in Intune](screenshots/05-intune-device-managed.png)
 
 ## What I'd take away from this
 
