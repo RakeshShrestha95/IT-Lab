@@ -20,9 +20,8 @@ script instead of editing each one in ADUC.
 
 The script uses Get-ADUser with -SearchBase pointed at the Staff OU, so it
 catches every user in every department sub-OU without me typing names.
-
-Screenshots in Phase 2/screenshots: 
-1. [Task 1 - Confirm UPN suffix.png]
+ 
+![UPN Suffix](Screenshots/Task 1 - Confirm UPN suffix.png)
 
 
 
@@ -48,8 +47,7 @@ Checked three places:
 - Synchronization Service Manager on DC01 > Operations: export to the
   Entra connector showed success.
 
-Screenshots in Phase 2/screenshots: 
-1. [Task 2- Sync successful.png]
+![Entra Sync Success](Screenshots/Task 2- Sync successful.png)
 
 ------------------------------------------------------------
 TASK 3: Test that changes keep syncing
@@ -59,11 +57,11 @@ confirmed Entra still showed the old values, then ran
 Start-ADSyncSyncCycle -PolicyType Delta on DC01 and confirmed the new
 values appeared in Entra a minute or two later.
 
-Screenshots in Phase 2/screenshots: 
-1. [Task 3 - Change user attribute in on-prem.png]
-2. [Task 3.2 - Confirming no changes in cloud.png]
-3. [Task 3.3 - Triggering delta sync.png]
-4. [Task 3.4 - Verifying changes in Entra ID.png]
+ 
+![User attribute](Screenshots/Task 3 - Change user attribute in on-prem.png)
+![No change in cloud](Screenshots/Task 3.2 - Confirming no changes in cloud.png)
+![Trigger Delta Sync](Screenshots/Task 3.3 - Triggering delta sync.png)
+![Verify Change](Screenshots/Task 3.4 - Verifying changes in Entra ID.png)
 
 
 ------------------------------------------------------------
@@ -77,10 +75,10 @@ it should show under Entra ID > Users > Deleted users, recoverable for 30
 days.] That works because Disabled Accounts is outside the sync scope, so
 Entra Connect removes the cloud object.
 
-Screenshots in Phase 2/screenshots: 
-1. [Task 4.1 - Moving user to Disabled accounts in OnPrem.png]
-2. [Task 4.2 - User active in Entra ID before moving user to outside synce scope.png]
-3. [Task 4.3 - User moved to Deleted users in Entra ID after moving user to outside synce scope.png]
+
+![Move to Disable](Screenshots/Task 4.1 - Moving user to Disabled accounts in OnPrem.png)
+![Users before sync](Screenshots/Task 4.2 - User active in Entra ID before moving user to outside synce scope.png)
+![Users after sync](Screenshots/Task 4.3 - User moved to Deleted users in Entra ID after moving user to outside synce scope.png)
 
 
 
