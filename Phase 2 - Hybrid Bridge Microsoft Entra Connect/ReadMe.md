@@ -47,7 +47,7 @@ Checked three places:
 - Synchronization Service Manager on DC01 > Operations: export to the
   Entra connector showed success.
 
-![Entra Sync Success](Screenshots/Task 2- Sync successful.png)
+![Entra Sync Success](Screenshots/02-Sync-successful.png)
 
 ------------------------------------------------------------
 TASK 3: Test that changes keep syncing
@@ -58,10 +58,10 @@ Start-ADSyncSyncCycle -PolicyType Delta on DC01 and confirmed the new
 values appeared in Entra a minute or two later.
 
  
-![User attribute](Screenshots/Task 3 - Change user attribute in on-prem.png)
-![No change in cloud](Screenshots/Task 3.2 - Confirming no changes in cloud.png)
-![Trigger Delta Sync](Screenshots/Task 3.3 - Triggering delta sync.png)
-![Verify Change](Screenshots/Task 3.4 - Verifying changes in Entra ID.png)
+![User attribute](Screenshots/03-Change-user-attribute-in-on-prem.png)
+![No change in cloud](Screenshots/04-Confirming-no-changes.png)
+![Trigger Delta Sync](Screenshots/05-Triggering-delta-sync.png)
+![Verify Change](Screenshots/06-Verifying-changes-Entra ID.png)
 
 
 ------------------------------------------------------------
@@ -76,10 +76,9 @@ days.] That works because Disabled Accounts is outside the sync scope, so
 Entra Connect removes the cloud object.
 
 
-![Move to Disable](Screenshots/Task 4.1 - Moving user to Disabled accounts in OnPrem.png)
-![Users before sync](Screenshots/Task 4.2 - User active in Entra ID before moving user to outside synce scope.png)
-![Users after sync](Screenshots/Task 4.3 - User moved to Deleted users in Entra ID after moving user to outside synce scope.png)
-![Licenses](Screenshots/Task 4.1 - Moving user to Disabled accounts in OnPrem.png)
+![Move to Disable](Screenshots/01-Moving-user-Disabled-OnPrem.png)
+![Users before sync](Screenshots/02-Active-users-before-move-outside-sync-scope.png)
+![Users after sync](Screenshots/03-Active-users-after-move-outside-sync-scope.png)
 
 
 
