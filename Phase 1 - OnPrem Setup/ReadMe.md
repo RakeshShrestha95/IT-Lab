@@ -21,8 +21,7 @@ users) to prove it actually worked end to end, not just the join dialog
 succeeding. Checked ipconfig /all to confirm it pulled an IP from my DHCP
 scope and pointed at DC01 for DNS.
 
-Screenshots in Phase 1/Screenshots:
-1. [Task 1 -Join Windows 11 VM to the Domain.png]
+![Domain Join](Screenshots/01-JoinDomain.png]
 
 
 ------------------------------------------------------------
@@ -46,8 +45,7 @@ Lesson: when a config looks "obviously" fine but nothing's working, check
 the diagnostic tool itself before re-checking the config for the fifth
 time.
 
-Screenshots in Phase 1/Screenshots:
-1. [Task 2- Verify the GPO applies on the domain-joined client.png]
+![Verify GPO](Screenshots/02-Verify-GPO-applied-client.png]
 
 ------------------------------------------------------------
 TASK 3: Finance file share
@@ -72,9 +70,10 @@ restricted. That's the real use case for ABE.
 Final test: james.oconnor - full access, can create/edit files.
 sarah.chen - access denied.
 
-Screenshots in Phase 1/Screenshots:
-1. [Task 3- File share with NTFS permissions -1.png]
-2. [Task 3- File share with NTFS permissions -2.png]
+
+![Accessible for authorized User](Screenshots/03-Accessible-AuthorizedUser.png]
+![Denied for unauthorized User](Screenshots/04-Denied-UnAuthorizedUser.png]
+
 
 ------------------------------------------------------------
 TASK 4: Print server - OfficePrinter
@@ -103,6 +102,5 @@ Also tested the spooler recovery scenario - paused the
 spooler, sent a job so it got stuck, restarted the spooler, confirmed the
 queue cleared.
 
-Screenshots in Phase 1/Screenshots:
-1. [Task 4- Print Server -access denied for unauthorized user.png]
-2. [Task 4- Print Server- Print successful.png]
+![Denied Print](Screenshots/05-Denied-UnAuthorizedUser.png]
+![Print Successful](Screenshots/06-PrintSuccess.png]
