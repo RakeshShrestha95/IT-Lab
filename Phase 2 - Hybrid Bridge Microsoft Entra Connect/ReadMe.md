@@ -79,7 +79,7 @@ Entra Connect removes the cloud object.
 ![Move to Disable](Screenshots/Task 4.1 - Moving user to Disabled accounts in OnPrem.png)
 ![Users before sync](Screenshots/Task 4.2 - User active in Entra ID before moving user to outside synce scope.png)
 ![Users after sync](Screenshots/Task 4.3 - User moved to Deleted users in Entra ID after moving user to outside synce scope.png)
-![Licenses](Screenshots/01-licences-assigned-e3.png)
+![Licenses](Screenshots/Task 4.1 - Moving user to Disabled accounts in OnPrem.png)
 
 
 
