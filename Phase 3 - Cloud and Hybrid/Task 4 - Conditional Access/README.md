@@ -1,38 +1,36 @@
-\# Phase 3, Task 4: Conditional Access (Report-only)
+# Phase 3, Task 4: Conditional Access (Report-only)
+
+
+**Goal:** control *who can sign in, to what, and from what kind of device*, and tie the Intune compliance policy from the previous task into access. 
+
+All three policies were built in **Report-only** mode so I could see their effect without risking a lockout.
+
+
+**Environment:** Microsoft 365 E3 trial tenant, PC-1 (hybrid joined, Intune enrolled, compliant), synced test users.
 
 
 
-\*\*Goal:\*\* control \*who can sign in, to what, and from what kind of device\*, and tie the Intune compliance policy from the previous task into access. 
-
-All three policies were built in \*\*Report-only\*\* mode so I could see their effect without risking a lockout.
+## Before building any policy
 
 
 
-\*\*Environment:\*\* Microsoft 365 E3 trial tenant, PC-1 (hybrid joined, Intune enrolled, compliant), synced test users.
-
-
-
-\## Before building any policy
-
-
-
-1\. \*\*Test Global account:\*\* created a cloud-only Global Administrator, `testglobal`, with a long random password stored offline. No licence, not in the sync scope. 
+1. **Test Global account:** created a cloud-only Global Administrator, `testglobal`, with a long random password stored offline. No licence, not in the sync scope. 
 
 It is excluded from every policy, so a bad policy can't lock me out of the tenant.
 
 
 
-2\. \*\*Security Defaults:\*\* turned off. Conditional Access can't be used while Security Defaults is on, and the two are alternatives, not additions.
+2. **Security Defaults:** turned off. Conditional Access can't be used while Security Defaults is on, and the two are alternatives, not additions.
 
 
 
-!\[Test Global account](screenshots/01-breakglass-account.png)
+![Test Global account](screenshots/01-breakglass-account.png)
 
-!\[Security Defaults disabled](screenshots/02-security-defaults-disabled.png)
+![Security Defaults disabled](screenshots/02-security-defaults-disabled.png)
 
 
 
-\## The three policies
+## The three policies
 
 
 
@@ -48,38 +46,32 @@ It is excluded from every policy, so a bad policy can't lock me out of the tenan
 
 
 
-`testglobal` is excluded from all three. All three are set to \*\*Report-only\*\*.
+`testglobal` is excluded from all three. All three are set to **Report-only**.
 
 
 
-\*\*Why these three:\*\*
+**Why these three:**
 
-\- \*\*CA01:\*\* an admin account without MFA puts the entire tenant at risk, so admins get the strictest rule first.
+- **CA01:** an admin account without MFA puts the entire tenant at risk, so admins get the strictest rule first.
 
-\- \*\*CA02:\*\* this is what makes the Intune compliance policy matter. Compliance on its own is a report. With CA02, a device that fails the baseline can't reach company email.
+- **CA02:** this is what makes the Intune compliance policy matter. Compliance on its own is a report. With CA02, a device that fails the baseline can't reach company email.
 
-\- \*\*CA03:\*\* legacy protocols (IMAP, POP, basic-auth ActiveSync) can't do MFA or device checks, so attackers use them to bypass every other policy.
-
-
-
-!\[Policies in Report-only](screenshots/03-ca-policies-report-only.png)
-
-!\[CA01 summary](screenshots/03a-ca-policies-report-only.png)
-
-!\[CA02 summary](screenshots/03b-ca-policies-report-only.png)
-
-!\[CA03 summary](screenshots/03c-ca-policies-report-only.png)
+- **CA03:** legacy protocols (IMAP, POP, basic-auth ActiveSync) can't do MFA or device checks, so attackers use them to bypass every other policy.
 
 
+![Policies in Report-only](screenshots/03-ca-policies-report-only.png)
+
+![CA01 summary](screenshots/03a-ca-policies-report-only.png)
+
+![CA02 summary](screenshots/03b-ca-policies-report-only.png)
+
+![CA03 summary](screenshots/03c-ca-policies-report-only.png)
 
 
-
-\## Testing
-
+## Testing
 
 
-I signed in to Outlook on the web as `james.oconnor` on PC-1 in two ways and read the result from \*\*Sign-in logs > the sign-in > Conditional Access tab\*\*.
-
+I signed in to Outlook on the web as `james.oconnor` on PC-1 in two ways and read the result from **Sign-in logs > the sign-in > Conditional Access tab**.
 
 
 | Policy | Edge normal profile | Edge InPrivate |
@@ -88,25 +80,25 @@ I signed in to Outlook on the web as `james.oconnor` on PC-1 in two ways and rea
 
 | CA01 | Not applied | Not applied |
 
-| CA02 | \*\*Success\*\* | \*\*Failure\*\* |
+| CA02 | **Success** | **Failure** |
 
 | CA03 | Not applied | Not applied |
 
 
 
-\- CA01 didn't apply because James isn't in an admin role.
+- CA01 didn't apply because James isn't in an admin role.
 
-\- CA03 didn't apply because a browser uses modern authentication, not a legacy protocol.
+- CA03 didn't apply because a browser uses modern authentication, not a legacy protocol.
 
-\- CA02 differs between the two sign-ins on the \*same PC\*. A normal Edge profile passes the device identity, so Entra sees a compliant device. 
+- CA02 differs between the two sign-ins on the *same PC*. A normal Edge profile passes the device identity, so Entra sees a compliant device. 
 
 InPrivate doesn't pass it, so Entra can't prove compliance. In production, that would block the user.
 
 
 
-!\[CA02 failure, InPrivate](screenshots/04-ca-reportonly-unmanaged.png)
+![CA02 failure, InPrivate](screenshots/04-ca-reportonly-unmanaged.png)
 
-!\[CA02 success, normal mode](screenshots/05-ca-reportonly-result.png)
+![CA02 success, normal mode](screenshots/05-ca-reportonly-result.png)
 
 
 
